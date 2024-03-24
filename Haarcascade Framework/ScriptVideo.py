@@ -10,7 +10,7 @@ while True:
     camera, frame = webcam.read() #Definindo as variaveis que serao utilizadas
 
     cinza = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY) #Tranformando a imagem em escala de cinza
-    detecta = classificadorVideoFace.detectMultiScale(cinza, scaleFactor=1.09, minNeighbors=5, minSize=(35,35)) #Detectando a face
+    detecta = classificadorVideoFace.detectMultiScale(cinza, scaleFactor=1.09, minNeighbors=5, minSize=(50,50)) #Detectando a face
 
 #looping for que irá desenhar o retangulo na face destectada
 
@@ -19,7 +19,7 @@ while True:
 
         olho = frame[y:y + a, x:x + l]
         olhoCinza = cv2.cvtColor(olho, cv2.COLOR_BGR2GRAY)
-        detectaOlho = classificadorVideoOlho.detectMultiScale(olhoCinza)
+        detectaOlho = classificadorVideoOlho.detectMultiScale(olhoCinza, scaleFactor=1.2, minNeighbors=8, minSize=(50,50))
         for (ox, oy, ol, oa) in detectaOlho:
             cv2.rectangle(olho, (ox, oy), (ox + ol, oy + oa), (0, 255, 0), 2)
 
